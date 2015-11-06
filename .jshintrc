@@ -1,0 +1,8 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "devel": true,
+  "indent": 2,
+  "unused": "vars",
+  "maxlen": 80
+}
