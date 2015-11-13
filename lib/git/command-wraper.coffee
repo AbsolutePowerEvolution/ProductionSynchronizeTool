@@ -41,6 +41,14 @@ Git =
         else
           resolve()
 
+  checkout: (ref, child_process = ChildProcess) ->
+    new When.Promise (resolve, reject) ->
+      child_process.exec("#{GitCommand} checkout #{ref}").on 'exit', (err) ->
+        if err
+          reject(err)
+        else
+          resolve()
+
 lodash.extend Git, defineCommand(['stash', 'stashPop'])
 
 module.exports = Git

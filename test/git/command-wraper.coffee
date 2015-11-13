@@ -12,6 +12,17 @@ describe 'CommandWraper', ->
         .exit({ code: 1 })
       expect(CommandWraper.fetch('origin', NockExec.moduleStub)).to.be.rejected
 
+  describe '#checkout', ->
+    it 'should resolve promise if success', ->
+      NockExec("#{CommandWraper.GitCommand} checkout master").exit()
+      expect(CommandWraper.checkout('master', NockExec.moduleStub)).to
+        .be.fulfilled
+    it 'should reject promise if error', ->
+      NockExec("#{CommandWraper.GitCommand} checkout master")
+        .exit({ code: 1 })
+      expect(CommandWraper.checkout('origin', NockExec.moduleStub)).to
+        .be.rejected
+
   describe '#stash', ->
     it 'should resolve promise if success', ->
       NockExec("#{CommandWraper.GitCommand} stash").exit()
