@@ -26,3 +26,11 @@ module.exports = Git =
         else
           resolve()
 
+  stashPop: (child_process = ChildProcess) ->
+    new When.Promise (resolve, reject) ->
+      child_process.exec("#{GitCommand} stash pop").on 'exit', (err) ->
+        if err
+          reject(err)
+        else
+          resolve()
+

@@ -19,3 +19,11 @@ describe 'CommandWraper', ->
     it 'should reject promise if error', ->
       NockExec("#{CommandWraper.GitCommand} stash").exit(code: 1)
       expect(CommandWraper.stash(NockExec.moduleStub)).to.be.rejected
+
+  describe '#stashPop', ->
+    it 'should resolve promise if success', ->
+      NockExec("#{CommandWraper.GitCommand} stash pop").exit()
+      expect(CommandWraper.stashPop(NockExec.moduleStub)).to.be.fulfilled
+    it 'should reject promise if error', ->
+      NockExec("#{CommandWraper.GitCommand} stash pop").exit(code: 1)
+      expect(CommandWraper.stashPop(NockExec.moduleStub)).to.be.rejected
