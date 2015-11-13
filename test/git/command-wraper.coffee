@@ -1,10 +1,4 @@
-chai = require 'chai'
-chaiAsPromised = require 'chai-as-promised'
 NockExec = require 'nock-exec'
-
-chai.use chaiAsPromised
-
-expect = chai.expect
 
 CommandWraper = require '../../lib/git/command-wraper'
 
