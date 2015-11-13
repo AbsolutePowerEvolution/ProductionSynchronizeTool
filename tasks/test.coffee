@@ -5,5 +5,5 @@ $ = loadPlugins()
 
 gulp.task 'test', ->
   gulp.src './test/**/*.coffee'
-    .pipe $.mocha()
+    .pipe $.mocha(require: './test/helper.coffee')
 
