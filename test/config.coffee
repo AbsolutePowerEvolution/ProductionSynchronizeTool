@@ -9,7 +9,7 @@ ConfigKeys = [
 ]
 
 describe 'Config', ->
-  it 'should throw when it could not found config', ->
+  xit 'should throw when it could not found config', ->
     stub = Sinon.stub(NodeConfig, 'has')
     stub.returns(false)
 
@@ -18,7 +18,7 @@ describe 'Config', ->
 
     stub.restore()
 
-  it 'should load config', ->
+  xit 'should load config', ->
     stubHas = Sinon.stub(NodeConfig, 'has')
     stubGet = Sinon.stub(NodeConfig, 'get')
 
