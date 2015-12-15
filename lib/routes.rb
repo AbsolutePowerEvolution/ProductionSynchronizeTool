@@ -7,7 +7,7 @@ require 'sinatra'
 require 'sinatra/contrib'
 
 def pull
-  # TODO: Implent git pull
+  # TODO: Implement git pull
 end
 
 post '/' do
