@@ -1,10 +1,12 @@
-language: node_js
-node_js: "4.1"
+language: ruby
+rvm:
+  - 2.1.5
+  - 2.2.1
 before_script:
-  - npm install -g gulp
-  - npm install
-script: npm test
+  - bundle
+script: rspec
 branches:
   only:
     - master
     - develop
+    - develop-ruby
