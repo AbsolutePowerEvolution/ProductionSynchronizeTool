@@ -17,10 +17,6 @@ configure :production do
   enable :reloader
 end
 
-def pull
-  # TODO: Implement git pull
-end
-
 get '/' do
   send_file File.expand_path('index.html', settings.public_folder)
 end
@@ -32,7 +28,8 @@ post '/' do
     payload = JSON.parse(request.body.read, symbolize_names: true)
     if event == 'push'
       if payload.fetch(:ref).end_with? 'master'
-        pull
+        git = Git.nre
+        git.pull
       end
       status 200
       body ''
