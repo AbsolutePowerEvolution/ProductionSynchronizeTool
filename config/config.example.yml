@@ -1,3 +1,5 @@
 ---
-address: "127.0.0.1"
-port: "9000"
+address: "0.0.0.0" # Bind address
+port: "9000" # Sync tool will listen on this port
+repo_path: '.' # Full path to repo
+remote_name: 'origin'
