@@ -4,6 +4,7 @@ gem 'figaro'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'puma'
+gem 'rugged'
 
 group :development, :test do
   gem 'pry'
