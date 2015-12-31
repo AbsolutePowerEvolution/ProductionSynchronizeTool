@@ -19,7 +19,7 @@ class Git
   def remote_check
     remote = repo.remotes[remote_name]
     fail GitError, "Remote #{remote_name} not exist" if remote.nil?
-    fail GitError, 'Please use http or https url' if ssh? remote.url
+    fail GitError, 'Please use http or https url for remote' if ssh? remote.url
     fail GitError, 'Repo has been modify' if repo_clean?
     true
   end
