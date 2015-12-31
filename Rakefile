@@ -23,6 +23,7 @@ task :check do
     git.remote_check
   rescue ProductionSync::GitError => e
     puts e.message
+    puts
     raise 'Check fail'
   end
 end
