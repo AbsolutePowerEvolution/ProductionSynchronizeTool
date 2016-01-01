@@ -9,10 +9,13 @@ gem 'rugged'
 group :development, :test do
   gem 'pry'
   gem 'rake'
+  gem 'guard'
+  gem 'guard-bundler'
 end
 
 group :test do
   gem 'rspec'
   gem 'rack-test'
   gem 'mocha'
+  gem 'guard-rspec'
 end
