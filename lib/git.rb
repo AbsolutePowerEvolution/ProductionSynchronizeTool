@@ -10,13 +10,13 @@ class Git
   GitError = ProductionSync::GitError # Alias for exception
 
   def pull
-    remote_check
+    repo_check
     remote = repo.remotes[remote_name]
     remote.fetch
     repo.merge_base 'master', "remotes/#{remote_name}/master"
   end
 
-  def remote_check
+  def repo_check
     remote = repo.remotes[remote_name]
     fail GitError, "Remote #{remote_name} not exist" if remote.nil?
     fail GitError, 'Please use http or https url for remote' if ssh? remote.url

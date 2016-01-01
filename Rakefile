@@ -20,7 +20,7 @@ task :check do
     fail 'Check fail'
   end
   begin
-    git.remote_check
+    git.repo_check
   rescue ProductionSync::GitError => e
     puts e.message
     puts
