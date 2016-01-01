@@ -9,6 +9,10 @@ rescue LoadError
   end
 end
 
+task :install do
+  cp 'config/config.example.yml', 'config/config.yml'
+end
+
 task :check do
   git = Git.new
   modify = git.repo_modify
