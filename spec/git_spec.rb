@@ -41,4 +41,41 @@ describe Git do
       end
     end
   end
+
+  describe '#repo_clean?' do
+    context 'when nothing modify' do
+      it 'should return true' do
+        mock_repo.expects(:status)
+        expect(git.repo_clean?).to be true
+
+        mock_repo.expects(:status).yields('foo', [:worktree_new])
+        expect(git.repo_clean?).to be true
+      end
+    end
+
+    context 'when something modify' do
+      it 'should return false' do
+        mock_repo.expects(:status).yields('foo', [:worktree_modified])
+        expect(git.repo_clean?).to be false
+
+        mock_repo.expects(:status).yields('foo', [:index_modified])
+        expect(git.repo_clean?).to be false
+      end
+    end
+  end
+
+  describe '#repo_check' do
+    let(:mock_remotes) { mock }
+
+    before(:each) do
+      mock_repo.expects(:remotes).returns(mock_remotes)
+    end
+
+    context 'remote not exist' do
+      it 'should fail' do
+        mock_remotes.expects(:[]).with('origin').returns(nil)
+        expect { git.repo_check }.to raise_error(Git::GitError)
+      end
+    end
+  end
 end
