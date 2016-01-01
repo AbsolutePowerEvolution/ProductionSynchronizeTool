@@ -12,7 +12,7 @@ describe 'Routes' do
     end
   end
 
-  describe 'post /'
+  describe 'post /' do
     context 'when no event' do
       it 'responses 422' do
         post '/'
@@ -34,4 +34,5 @@ describe 'Routes' do
         expect(last_response.status).to eq(422)
       end
     end
+  end
 end
