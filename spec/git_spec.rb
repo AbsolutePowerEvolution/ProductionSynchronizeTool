@@ -18,9 +18,7 @@ describe Git do
   describe '#repo_modify' do
     context 'when nothing modify' do
       it 'should return empty array' do
-        mock_repo = mock
         mock_repo.expects(:status).yields('foo', [:worktree_new])
-        Rugged::Repository.stubs(:new).with('.').returns(mock_repo)
         git = Git.new
         expect(git.repo_modify).to eq []
       end
