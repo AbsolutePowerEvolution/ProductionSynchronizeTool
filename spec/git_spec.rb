@@ -92,5 +92,13 @@ describe Git do
         expect { git.repo_check }.to raise_error(Git::GitError)
       end
     end
+
+    context 'repo is clean and remote config correct' do
+      it 'should pass and return true' do
+        mock_remotes.expects(:[]).with('origin').returns(mock(url: 'https://example.com/foo.git'))
+        mock_repo.expects(:status)
+        expect(git.repo_check).to be true
+      end
+    end
   end
 end
