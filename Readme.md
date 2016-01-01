@@ -3,7 +3,6 @@ ProductionSynchronizeTool
 
 This is a tool to automative depoly your production from github or any with github like webhook site.  
 
-
 # Usage #
 ```shell
 $ git clone https://github.com/AbsolutePowerEvolution/ProductionSynchronizeTool.git sync-tool
@@ -23,6 +22,10 @@ If all done. Then run:
 $ bundle exec puma
 ```
 This will start the server and listen from github request.
+
+# Limitation #
+Because rugged can't resolve host with ssh if you have config an alias for a host.
+So please use http or https as remote url.
 
 # Configure #
 - `address`: Address for bind on. Default is enough.
