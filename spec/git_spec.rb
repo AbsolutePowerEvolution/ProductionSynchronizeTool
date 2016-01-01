@@ -77,5 +77,20 @@ describe Git do
         expect { git.repo_check }.to raise_error(Git::GitError)
       end
     end
+
+    context 'remote url protocol is ssh' do
+      it 'should fail' do
+        mock_remotes.expects(:[]).with('origin').returns(mock(url: 'ssh://example.com/foo.git'))
+        expect { git.repo_check }.to raise_error(Git::GitError)
+      end
+    end
+
+    context 'repo is modify' do
+      it 'should fail' do
+        mock_remotes.expects(:[]).with('origin').returns(mock(url: 'https://example.com/foo.git'))
+        mock_repo.expects(:status).yields('foo', [:worktree_modified])
+        expect { git.repo_check }.to raise_error(Git::GitError)
+      end
+    end
   end
 end
