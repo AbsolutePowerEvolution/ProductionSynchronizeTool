@@ -32,5 +32,14 @@ describe Git do
         expect(git.repo_modify).to eq ['foo']
       end
     end
+
+    context 'when staged area have modify' do
+      it 'should return it filename' do
+        mock_repo.expects(:status).yields('foo', [:index_modified])
+          .yields('bar', [:worktree_new])
+        git = Git.new
+        expect(git.repo_modify).to eq ['foo']
+      end
+    end
   end
 end
