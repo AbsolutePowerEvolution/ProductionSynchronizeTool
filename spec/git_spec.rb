@@ -10,6 +10,7 @@ require 'rugged'
 
 describe Git do
   let(:mock_repo) { mock }
+  let(:git) { Git.new }
 
   before(:each) do
     Rugged::Repository.stubs(:new).with('.').returns(mock_repo)
@@ -28,7 +29,6 @@ describe Git do
       it 'should return it filename' do
         mock_repo.expects(:status).yields('foo', [:worktree_modified])
           .yields('bar', [:worktree_new])
-        git = Git.new
         expect(git.repo_modify).to eq ['foo']
       end
     end
@@ -37,7 +37,6 @@ describe Git do
       it 'should return it filename' do
         mock_repo.expects(:status).yields('foo', [:index_modified])
           .yields('bar', [:worktree_new])
-        git = Git.new
         expect(git.repo_modify).to eq ['foo']
       end
     end
