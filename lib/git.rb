@@ -13,7 +13,12 @@ class Git
     repo_check
     remote = repo.remotes[remote_name]
     remote.fetch
-    repo.merge_base 'master', "remotes/#{remote_name}/master"
+    repo_path = Config.repo_path
+    git_dir = File.join repo_path, '.git'
+    Dir.chdir(repo_path) do
+      `git --work-tree '#{repo_path}' --git-dir '#{git_dir}' checkout master`
+      `git --work-tree '#{repo_path}' --git-dir '#{git_dir}' merge origin/master`
+    end
   end
 
   def repo_check
