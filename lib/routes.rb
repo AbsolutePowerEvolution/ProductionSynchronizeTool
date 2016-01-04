@@ -7,6 +7,7 @@ require 'sinatra'
 require 'sinatra/contrib'
 
 require_relative 'config'
+require_relative 'git'
 
 configure do
   set :server, :puma
@@ -28,7 +29,7 @@ post '/' do
     payload = JSON.parse(request.body.read, symbolize_names: true)
     if event == 'push'
       if payload.fetch(:ref).end_with? 'master'
-        git = Git.nre
+        git = Git.new
         git.pull
       end
       status 200
