@@ -78,7 +78,11 @@ require_relative '../lib/config.rb'
 # bind 'unix:///var/run/puma.sock?umask=0111'
 # bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'
 
-bind "tcp://#{Config.address}:#{Config.port}"
+if Config.ssl
+  bind "ssl://#{Config.address}:#{Config.port}?key=#{Config.key_path}&cert=#{Config.cert_path}"
+else
+  bind "tcp://#{Config.address}:#{Config.port}"
+end
 
 # Instead of "bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'" you
 # can also use the "ssl_bind" option.
