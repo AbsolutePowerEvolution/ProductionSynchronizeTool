@@ -22,15 +22,17 @@ describe 'Routes' do
 
     context 'when without body' do
       it 'should response 422 if ' do
-        post '/', nil, 'Content-Type' => 'application/json', 'X-Github-Event' => 'push'
+        post '/', nil, 'Content-Type' => 'application/json',
+                       'X-Github-Event' => 'push'
         expect(last_response.status).to eq(422)
       end
     end
 
     context 'when with correct payload' do
       it 'should response 200 if with correct payload' do
-        data = {ref: 'foo'}
-        post '/', data.to_json, 'Content-Type' => 'application/json', 'X-Github-Event' => 'push'
+        data = { ref: 'foo' }
+        post '/', data.to_json, 'Content-Type' => 'application/json',
+                                'X-Github-Event' => 'push'
         expect(last_response.status).to eq(422)
       end
     end

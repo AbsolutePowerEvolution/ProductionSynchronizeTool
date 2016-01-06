@@ -80,7 +80,8 @@ describe Git do
 
     context 'remote url protocol is ssh' do
       it 'fail' do
-        mock_remotes.expects(:[]).with('origin').returns(mock(url: 'ssh://example.com/foo.git'))
+        mock_remotes.expects(:[]).with('origin')
+          .returns(mock(url: 'ssh://example.com/foo.git'))
         expect { git.repo_check }.to raise_error(Git::GitError)
       end
     end

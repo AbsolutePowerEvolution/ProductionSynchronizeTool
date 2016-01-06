@@ -16,8 +16,7 @@ class Git
     repo_path = Config.repo_path
     git_dir = File.join repo_path, '.git'
     Dir.chdir(repo_path) do
-      `git --work-tree '#{repo_path}' --git-dir '#{git_dir}' checkout master`
-      `git --work-tree '#{repo_path}' --git-dir '#{git_dir}' merge origin/master`
+      call_git_pull(repo_path, git_dir)
     end
   end
 
@@ -47,6 +46,11 @@ class Git
     @repo ||= Rugged::Repository.new(Config.repo_path)
   rescue Rugged::RepositoryError
     raise ProductionSync::GitError, "#{Config.repo_path} is not a git repo"
+  end
+
+  def call_git_pull(repo_path, git_dir)
+    `git --work-tree '#{repo_path}' --git-dir '#{git_dir}' checkout master`
+    `git --work-tree '#{repo_path}' --git-dir '#{git_dir}' merge origin/master`
   end
 
   def remote_name
