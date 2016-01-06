@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'figaro'
 gem 'sinatra'
+gem 'secure_headers', git: 'https://github.com/twitter/secureheaders.git'
 gem 'sinatra-contrib'
 gem 'puma'
 gem 'rugged'
