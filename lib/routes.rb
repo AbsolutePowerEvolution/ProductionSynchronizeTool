@@ -20,7 +20,7 @@ configure :production do
 end
 
 SecureHeaders::Configuration.configure do |config|
-  config.hsts 'max-age=15552000' if Config.ssl
+  config.hsts = 'max-age=15552000' if Config.ssl
   config.x_frame_options = "DENY"
   config.x_content_type_options = "nosniff"
   config.x_xss_protection = "1; mode=block"
