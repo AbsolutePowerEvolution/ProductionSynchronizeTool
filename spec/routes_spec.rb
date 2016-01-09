@@ -21,19 +21,24 @@ describe 'Routes' do
     end
 
     context 'when without body' do
-      it 'should response 422 if ' do
-        post '/', nil, 'Content-Type' => 'application/json',
-                       'X-Github-Event' => 'push'
+      it 'will response 422' do
+        header 'CONTENT_TYPE', 'application/json'
+        header 'X_GITHUB_EVENT', 'push'
+        post '/'
         expect(last_response.status).to eq(422)
       end
     end
 
-    context 'when with correct payload' do
-      it 'should response 200 if with correct payload' do
-        data = { ref: 'foo' }
-        post '/', data.to_json, 'Content-Type' => 'application/json',
-                                'X-Github-Event' => 'push'
-        expect(last_response.status).to eq(422)
+    context 'with correct payload' do
+      context 'when not master' do
+        it %q(will response 200 and doesn't pull) do
+          data = { ref: 'foo' }
+          header 'CONTENT_TYPE', 'application/json'
+          header 'X_GITHUB_EVENT', 'push'
+          post '/', data.to_json
+
+          expect(last_response.status).to eq(200)
+        end
       end
     end
   end
