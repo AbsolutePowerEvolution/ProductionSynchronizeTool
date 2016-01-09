@@ -4,6 +4,8 @@
 require 'json'
 require 'spec_helper'
 
+require 'git'
+
 describe 'Routes' do
   describe 'get /' do
     it 'allows accessing the home page' do
@@ -30,9 +32,27 @@ describe 'Routes' do
     end
 
     context 'with correct payload' do
+      let(:mock_git) { mock }
+
       context 'when not master' do
         it %q(will response 200 and doesn't pull) do
+          Git.expects(:new).never
+
           data = { ref: 'foo' }
+          header 'CONTENT_TYPE', 'application/json'
+          header 'X_GITHUB_EVENT', 'push'
+          post '/', data.to_json
+
+          expect(last_response.status).to eq(200)
+        end
+      end
+
+      context 'when is master' do
+        it 'will response 200 and pull' do
+          Git.expects(:new).returns(mock_git)
+          mock_git.expects(:pull).once
+
+          data = { ref: 'master' }
           header 'CONTENT_TYPE', 'application/json'
           header 'X_GITHUB_EVENT', 'push'
           post '/', data.to_json
