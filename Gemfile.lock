@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/twitter/secureheaders.git
-  revision: 6212b268baa711af55c43e204b752740b1e6fb77
+  revision: 44e29eed37e85a8f580ada3923c1e3010b028422
   specs:
     secure_headers (3.0.0.pre2)
       useragent
@@ -56,7 +56,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (10.4.2)
+    rake (10.5.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -69,7 +69,7 @@ GEM
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-mocks (3.4.0)
+    rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
