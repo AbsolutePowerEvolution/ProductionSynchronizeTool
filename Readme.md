@@ -9,9 +9,8 @@ This is a tool to automative depoly your production from github or any with gith
 $ git clone https://github.com/AbsolutePowerEvolution/ProductionSynchronizeTool.git sync-tool
 $ cd sync-tool
 $ bundle --deployment
-$ cd config
-$ cp config.example.yml config.yml
-$ vim config.yml # or use your favorite editor
+$ bundle exec rake install
+$ vim config/config.yml # or use your favorite editor
 ```
 Please config repo path to your product.
 
