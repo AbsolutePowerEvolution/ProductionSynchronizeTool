@@ -10,7 +10,12 @@ rescue LoadError
   end
 end
 
-task :install do
+directory 'tmp/run'
+directory 'tmp/log'
+
+task mkdir: ['tmp/run', 'tmp/log']
+
+task install: [:mkdir] do
   cp 'config/config.example.yml', 'config/config.yml'
 end
 
