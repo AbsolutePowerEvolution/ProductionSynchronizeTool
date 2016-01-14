@@ -1,7 +1,7 @@
 ---
 address: "0.0.0.0" # Bind address
 port: "9000" # Sync tool will listen on this port
-ssl: false
+ssl: "false"
 key_path: 'path/to/server/key'
 cert_path: 'path/to/server/cert'
 repo_path: '.' # Full path to repo
