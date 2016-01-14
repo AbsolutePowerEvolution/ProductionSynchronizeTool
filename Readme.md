@@ -19,7 +19,7 @@ If got any error please fix it.
 
 If all done. Then run:
 ```shell
-$ bundle exec puma
+$ bundle exec pumactl start
 ```
 This will start the server and listen from github request.
 
